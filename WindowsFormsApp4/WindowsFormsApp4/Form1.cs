@@ -90,6 +90,15 @@ namespace WindowsFormsApp4
                 richTextBox4.AppendText(Spccount);
             }
 
+            else
+            {
+                // Messagebox to tell user there is no text entered
+                MessageBox.Show("No text was entered");
+                richTextBox1.AppendText("Add text here");
+            }
+            
+
+
 
         }
 
@@ -121,16 +130,22 @@ namespace WindowsFormsApp4
             Globals.trimmedWordList = trimmedWords.Split('\n').ToList<string>();
            
             listBox1.DataSource = Globals.trimmedWordList;
-            
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
+            richTextBox1.AppendText("Add text here");
+
             richTextBox2.Clear();
+            richTextBox2.AppendText("Word count: ");
+
             richTextBox3.Clear();
+            richTextBox3.AppendText("Char count: ");
+
             richTextBox4.Clear();
+            richTextBox4.AppendText("Length count: ");
         }
     }
 }
