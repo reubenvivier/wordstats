@@ -36,6 +36,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -49,9 +50,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(289, 870);
+            this.button1.Location = new System.Drawing.Point(192, 872);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(269, 168);
+            this.button1.Size = new System.Drawing.Size(173, 166);
             this.button1.TabIndex = 1;
             this.button1.Text = "scan text";
             this.button1.UseVisualStyleBackColor = true;
@@ -71,7 +72,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(13, 870);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(269, 168);
+            this.button2.Size = new System.Drawing.Size(173, 168);
             this.button2.TabIndex = 4;
             this.button2.Text = "load files";
             this.button2.UseVisualStyleBackColor = true;
@@ -105,11 +106,22 @@
             this.richTextBox4.Text = "Length Count: ";
             this.richTextBox4.ZoomFactor = 2F;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(371, 872);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(173, 166);
+            this.button3.TabIndex = 43;
+            this.button3.Text = "reset";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 1107);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.richTextBox4);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.listBox1);
@@ -132,6 +144,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.Button button3;
     }
 }
 

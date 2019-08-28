@@ -124,5 +124,13 @@ namespace WindowsFormsApp4
             
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            richTextBox2.Clear();
+            richTextBox3.Clear();
+            richTextBox4.Clear();
+        }
     }
 }
