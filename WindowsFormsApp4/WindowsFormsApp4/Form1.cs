@@ -21,30 +21,34 @@ namespace WindowsFormsApp4
             InitializeComponent();
         }
 
+        static class Globals
+        {
+            // this is the global word list
+            public static List<string> trimmedWordList;
+        }
+
         private int wordCount(string input)
         {
 
+            // word count
             int count = input.Split(' ').Count();
-
             return count;
-
 
         }
 
         private int charCount(string input)
         {
 
+            // character count
             int length = input.Replace(" ", "").Length;
-
             return length;
 
         }
 
         private int charspaceCount(string input)
         {
-
+            // character and space count
             int length = input.Length;
-
             return length;
 
         }
@@ -57,30 +61,36 @@ namespace WindowsFormsApp4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            richTextBox2.Clear();
-            richTextBox2.AppendText("Word count: ");
+            // Checks if text is entered
+            string textInput = richTextBox1.Text.Replace(" ", string.Empty);
+            if (textInput != string.Empty)
+            {
 
-            richTextBox3.Clear();
-            richTextBox3.AppendText("Char count: ");
+                // Clears ands sets text in stats boxes
+                richTextBox2.Clear();
+                richTextBox2.AppendText("Word count: ");
 
-            richTextBox4.Clear();
-            richTextBox4.AppendText("Length count: ");
+                richTextBox3.Clear();
+                richTextBox3.AppendText("Char count: ");
 
-            int Wrdcount = wordCount(richTextBox1.Text);
+                richTextBox4.Clear();
+                richTextBox4.AppendText("Length count: ");
 
-            string wordcount = Convert.ToString(Wrdcount);
-            richTextBox2.AppendText(wordcount);
+                // Calculates word stats
+                int wrdCount = wordCount(richTextBox1.Text);
+                string wordcount = Convert.ToString(wrdCount);
+                richTextBox2.AppendText(wordcount);
+
+                int chrCount = charCount(richTextBox1.Text);
+                string Charcount = Convert.ToString(chrCount);
+                richTextBox3.AppendText(Charcount);
+
+                int spaceCount = charspaceCount(richTextBox1.Text);
+                string Spccount = Convert.ToString(spaceCount);
+                richTextBox4.AppendText(Spccount);
+            }
 
 
-            int Chrcount = charCount(richTextBox1.Text);
-
-            string Charcount = Convert.ToString(Chrcount);
-            richTextBox3.AppendText(Charcount);
-
-            int Spacecount = charspaceCount(richTextBox1.Text);
-
-            string Spccount = Convert.ToString(Spacecount);
-            richTextBox4.AppendText(Spccount);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -89,28 +99,29 @@ namespace WindowsFormsApp4
 
         }
 
-
-
         private void button2_Click_1(object sender, EventArgs e)
         {
+            
             string untrimmedWords = "";
             string trimmedWords = "";
-            //listBox1.DataSource = File.ReadAllLines(@" C:\Users\Reuben-Laptop\Desktop\dt text\basewrd1.txt");
+            
+            // foreach loop that gets all the words in all the files and combinds them into one
             foreach (string file in Directory.EnumerateFiles(@"C:\Users\Reuben-Laptop\Desktop\BNC_COCA_25000", "*.txt"))
             {
                 string words = File.ReadAllText(file);
                 untrimmedWords += words.ToString();
             }
 
+            // trims strings to only include words
             untrimmedWords = Regex.Replace(untrimmedWords, " 0", "");
-            trimmedWords = untrimmedWords.Replace("\t", "").Replace("\r", "");//.Replace("\n","");
-            List <string> trimmedWordList = new List<string>();
-            trimmedWordList = trimmedWords.Split('\n').ToList<string>();
-            
+            trimmedWords = untrimmedWords.Replace("\t", "").Replace("\r", "");
 
+            // splits words into a list
+            Globals.trimmedWordList = new List<string>();
+            Globals.trimmedWordList = trimmedWords.Split('\n').ToList<string>();
+           
+            listBox1.DataSource = Globals.trimmedWordList;
             
-
-            listBox1.DataSource = trimmedWordList;
 
         }
     }
