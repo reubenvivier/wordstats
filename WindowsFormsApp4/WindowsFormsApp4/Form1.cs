@@ -106,6 +106,31 @@ namespace WindowsFormsApp4
             untrimmedWordList = untrimmedWords.Split('\n').ToList<string>();
             List<string> trimmedWordList = new List<string>();
 
+            foreach (string word in untrimmedWordList)
+            {
+                if (word.Contains("\n"))
+
+                {
+
+                    word.Replace("\n", ""); //Replace with Empty String 
+                }
+
+                if (word.Contains("\r"))
+
+                {
+
+                    word.Replace("\r", ""); //Replace with Empty String 
+                }
+
+                if (word.Contains("\t"))
+
+                {
+                    word.Replace("\t", ""); //Replace with Empty String 
+
+                }
+
+                trimmedWordList.Add(word.ToString());
+            }
 
 
         }
