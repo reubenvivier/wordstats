@@ -102,6 +102,9 @@ namespace WindowsFormsApp4
             }
 
             untrimmedWords = Regex.Replace(untrimmedWords, " 0", "");
+            List <string> untrimmedWordList = new List<string>();
+            untrimmedWordList = untrimmedWords.Split('\n').ToList<string>();
+            List<string> trimmedWordList = new List<string>();
 
 
 
