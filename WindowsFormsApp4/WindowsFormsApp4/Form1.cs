@@ -53,7 +53,6 @@ namespace WindowsFormsApp4
 
         }
 
-
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -88,6 +87,20 @@ namespace WindowsFormsApp4
                 int spaceCount = charspaceCount(richTextBox1.Text);
                 string Spccount = Convert.ToString(spaceCount);
                 richTextBox4.AppendText(Spccount);
+
+                // Variable for trimmed inputted words
+                string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
+
+                //foreach (string word in inputtedWords.Split(" "))
+                {
+
+               //     if (Globals.trimmedWordList.Contains(word.ToString()))
+                    {
+
+                    }
+
+                }
+
             }
 
             else
@@ -96,9 +109,6 @@ namespace WindowsFormsApp4
                 MessageBox.Show("No text was entered");
                 richTextBox1.AppendText("Add text here");
             }
-            
-
-
 
         }
 
@@ -114,18 +124,18 @@ namespace WindowsFormsApp4
             string untrimmedWords = "";
             string trimmedWords = "";
             
-            // foreach loop that gets all the words in all the files and combinds them into one
+            // Foreach loop that gets all the words in all the files and combinds them into one
             foreach (string file in Directory.EnumerateFiles(@"C:\Users\Reuben-Laptop\Desktop\BNC_COCA_25000", "*.txt"))
             {
                 string words = File.ReadAllText(file);
                 untrimmedWords += words.ToString();
             }
 
-            // trims strings to only include words
+            // Trims strings to only include words
             untrimmedWords = Regex.Replace(untrimmedWords, " 0", "");
             trimmedWords = untrimmedWords.Replace("\t", "").Replace("\r", "");
 
-            // splits words into a list
+            // Splits words into a list
             Globals.trimmedWordList = new List<string>();
             Globals.trimmedWordList = trimmedWords.Split('\n').ToList<string>();
            
