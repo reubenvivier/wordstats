@@ -94,6 +94,7 @@ namespace WindowsFormsApp4
         private void button2_Click_1(object sender, EventArgs e)
         {
             string untrimmedWords = "";
+            string trimmedWords = "";
             //listBox1.DataSource = File.ReadAllLines(@" C:\Users\Reuben-Laptop\Desktop\dt text\basewrd1.txt");
             foreach (string file in Directory.EnumerateFiles(@"C:\Users\Reuben-Laptop\Desktop\BNC_COCA_25000", "*.txt"))
             {
@@ -102,36 +103,14 @@ namespace WindowsFormsApp4
             }
 
             untrimmedWords = Regex.Replace(untrimmedWords, " 0", "");
-            List <string> untrimmedWordList = new List<string>();
-            untrimmedWordList = untrimmedWords.Split('\n').ToList<string>();
-            List<string> trimmedWordList = new List<string>();
+            trimmedWords = untrimmedWords.Replace("\t", "").Replace("\r", "");//.Replace("\n","");
+            List <string> trimmedWordList = new List<string>();
+            trimmedWordList = trimmedWords.Split('\n').ToList<string>();
+            
 
-            foreach (string word in untrimmedWordList)
-            {
-                if (word.Contains("\n"))
+            
 
-                {
-
-                    word.Replace("\n", ""); //Replace with Empty String 
-                }
-
-                if (word.Contains("\r"))
-
-                {
-
-                    word.Replace("\r", ""); //Replace with Empty String 
-                }
-
-                if (word.Contains("\t"))
-
-                {
-                    word.Replace("\t", ""); //Replace with Empty String 
-
-                }
-
-                trimmedWordList.Add(word.ToString());
-            }
-
+            listBox1.DataSource = trimmedWordList;
 
         }
     }
