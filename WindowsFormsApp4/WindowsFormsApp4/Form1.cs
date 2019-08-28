@@ -90,12 +90,21 @@ namespace WindowsFormsApp4
 
                 // Variable for trimmed inputted words
                 string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
+                List<string> inputtedWordList = new List<string>();
+                inputtedWordList = inputtedWords.Split(' ').ToList<string>();
 
-                //foreach (string word in inputtedWords.Split(" "))
+                foreach (string word in inputtedWords.Split(' '))
                 {
 
-               //     if (Globals.trimmedWordList.Contains(word.ToString()))
+                    
+
+                    if (Globals.trimmedWordList.Contains(word.ToString()))
                     {
+
+                        int count = File.ReadLines(inputtedWords).Count(x => x.Contains(word));
+                        int percentage = count * 100 / inputtedWordList.Count;
+                        
+                        richTextBox5.AppendText($"{word} \t {count} \t {percentage}");
 
                     }
 
@@ -156,6 +165,11 @@ namespace WindowsFormsApp4
 
             richTextBox4.Clear();
             richTextBox4.AppendText("Length count: ");
+        }
+
+        private void richTextBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
