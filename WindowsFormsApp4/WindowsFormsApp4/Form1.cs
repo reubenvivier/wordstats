@@ -88,23 +88,32 @@ namespace WindowsFormsApp4
                 string Spccount = Convert.ToString(spaceCount);
                 richTextBox4.AppendText(Spccount);
 
-                // Variable for trimmed inputted words
+                //int count = inputtedWordList.Count;
+
+                // Variable for trimmed inputted words and set to lower case
                 string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
                 List<string> inputtedWordList = new List<string>();
-                inputtedWordList = inputtedWords.Split(' ').ToList<string>();
+                inputtedWordList = inputtedWords.ToLower().Split(' ').ToList<string>();
 
-                foreach (string word in inputtedWords.Split(' '))
+                for (int i = 0; i < inputtedWordList.Count; i++)
+                
                 {
-
                     
-
-                    if (Globals.trimmedWordList.Contains(word.ToString()))
+                    if (Globals.trimmedWordList.Contains(inputtedWordList[i]))
                     {
+                        int iCount = 0;
 
-                        int count = File.ReadLines(inputtedWords).Count(x => x.Contains(word));
-                        int percentage = count * 100 / inputtedWordList.Count;
+                        for (int x = 0; x < inputtedWordList.Count; x++)
+                        {
+                            if (inputtedWordList[i] == inputtedWordList[x])
+                            {
+                                iCount++;
+                            }
+                        }
+                            
+                        int percentage = iCount * 100 / inputtedWordList.Count;
                         
-                        richTextBox5.AppendText($"{word} \t {count} \t {percentage}");
+                        richTextBox5.AppendText($"{inputtedWordList[i]} \t {iCount} \t {percentage} \n");
 
                     }
 
@@ -137,7 +146,7 @@ namespace WindowsFormsApp4
             foreach (string file in Directory.EnumerateFiles(@"C:\Users\Reuben-Laptop\Desktop\BNC_COCA_25000", "*.txt"))
             {
                 string words = File.ReadAllText(file);
-                untrimmedWords += words.ToString();
+                untrimmedWords += words.ToString().ToLower();
             }
 
             // Trims strings to only include words
