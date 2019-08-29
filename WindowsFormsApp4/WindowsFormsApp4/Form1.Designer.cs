@@ -37,7 +37,7 @@
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -83,7 +83,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 25;
-            this.listBox1.Location = new System.Drawing.Point(1241, 12);
+            this.listBox1.Location = new System.Drawing.Point(1358, 12);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(236, 854);
             this.listBox1.TabIndex = 5;
@@ -117,21 +117,21 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // richTextBox5
+            // listBox2
             // 
-            this.richTextBox5.Location = new System.Drawing.Point(840, 12);
-            this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.Size = new System.Drawing.Size(395, 854);
-            this.richTextBox5.TabIndex = 44;
-            this.richTextBox5.Text = "";
-            this.richTextBox5.TextChanged += new System.EventHandler(this.richTextBox5_TextChanged);
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 25;
+            this.listBox2.Location = new System.Drawing.Point(840, 12);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(512, 854);
+            this.listBox2.TabIndex = 44;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1606, 1107);
-            this.Controls.Add(this.richTextBox5);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.richTextBox4);
             this.Controls.Add(this.richTextBox3);
@@ -156,7 +156,7 @@
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.RichTextBox richTextBox5;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 

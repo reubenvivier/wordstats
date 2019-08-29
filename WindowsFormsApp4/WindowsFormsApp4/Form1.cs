@@ -75,6 +75,8 @@ namespace WindowsFormsApp4
                 richTextBox4.Clear();
                 richTextBox4.AppendText("Length count: ");
 
+                listBox2.Items.Clear();
+
                 // Calculates word stats
                 int wrdCount = wordCount(richTextBox1.Text);
                 string wordcount = Convert.ToString(wrdCount);
@@ -97,25 +99,25 @@ namespace WindowsFormsApp4
                 listWithDupes = inputtedWords.ToLower().Split(' ').ToList<string>();
                 inputtedWordList = listWithDupes.Distinct().ToList();
 
-                for (int i = 0; i < inputtedWordList.Count; i++)
+                for (int i = 0; i < inputtedWordList.Count; i+= 1)
                 
                 {
                     
                     if (Globals.trimmedWordList.Contains(inputtedWordList[i]))
                     {
-                        int iCount = 0;
+                        float iCount = 0;
 
                         for (int x = 0; x < inputtedWordList.Count; x++)
                         {
                             if (inputtedWordList[i] == listWithDupes[x])
                             {
-                                iCount++;
+                                iCount += 1;
                             }
                         }
                             
                         float percentage = iCount * 100 / inputtedWordList.Count;
-                        string stats = ($"{inputtedWordList[i]} \t {iCount} \t {percentage} \n");
-                        richTextBox5.AppendText(stats);
+                        listBox2.Items.Add ($"{inputtedWordList[i]} \t\t\t {iCount} \t {percentage} \n");
+                        listBox2.Sorted = true;
 
                     }
 
@@ -176,6 +178,8 @@ namespace WindowsFormsApp4
 
             richTextBox4.Clear();
             richTextBox4.AppendText("Length count: ");
+
+            listBox2.Items.Clear();
         }
 
         private void richTextBox5_TextChanged(object sender, EventArgs e)
