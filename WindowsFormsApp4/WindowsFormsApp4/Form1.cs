@@ -93,7 +93,9 @@ namespace WindowsFormsApp4
                 // Variable for trimmed inputted words and set to lower case
                 string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
                 List<string> inputtedWordList = new List<string>();
-                inputtedWordList = inputtedWords.ToLower().Split(' ').ToList<string>();
+                List<string> listWithDupes = new List<string>();
+                listWithDupes = inputtedWords.ToLower().Split(' ').ToList<string>();
+                inputtedWordList = listWithDupes.Distinct().ToList();
 
                 for (int i = 0; i < inputtedWordList.Count; i++)
                 
@@ -105,15 +107,15 @@ namespace WindowsFormsApp4
 
                         for (int x = 0; x < inputtedWordList.Count; x++)
                         {
-                            if (inputtedWordList[i] == inputtedWordList[x])
+                            if (inputtedWordList[i] == listWithDupes[x])
                             {
                                 iCount++;
                             }
                         }
                             
-                        int percentage = iCount * 100 / inputtedWordList.Count;
-                        
-                        richTextBox5.AppendText($"{inputtedWordList[i]} \t {iCount} \t {percentage} \n");
+                        float percentage = iCount * 100 / inputtedWordList.Count;
+                        string stats = ($"{inputtedWordList[i]} \t {iCount} \t {percentage} \n");
+                        richTextBox5.AppendText(stats);
 
                     }
 
