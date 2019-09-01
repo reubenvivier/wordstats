@@ -19,12 +19,11 @@ namespace WindowsFormsApp4
         public Form1()
         {
             InitializeComponent();
-
         }
 
         static class Globals
         {
-            // this is the global word list
+            // this is the list of words from all the files
             public static List<string> trimmedWordList;
         }
 
@@ -80,7 +79,7 @@ namespace WindowsFormsApp4
                 richTextBox4.AppendText("Length count: ");
 
                 listBox3.Items.Clear();
-                listBox3.Items.Add($"Misspelt words");
+                listBox3.Items.Add("Misspelt words");
                 listBox3.Items.Add("");
 
                 listBox2.Items.Clear();
@@ -98,8 +97,6 @@ namespace WindowsFormsApp4
                 string Spccount = Convert.ToString(spaceCount);
                 richTextBox4.AppendText(Spccount);
 
-                //int count = inputtedWordList.Count;
-
                 // Variable for trimmed inputted words and set to lower case
                 string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
                 List<string> inputtedWordList = new List<string>();
@@ -110,11 +107,12 @@ namespace WindowsFormsApp4
                 for (int i = 0; i < inputtedWordList.Count; i+= 1)
                 
                 {
-
+                    // if the word is in the word file
                     if (Globals.trimmedWordList.Contains(inputtedWordList[i].ToLower()))
                     {
                         int iCount = 0;
 
+                        // counts how many times the word is used
                         for (int x = 0; x < listWithDupes.Count; x++)
                         {
                             if (inputtedWordList[i].ToLower() == listWithDupes[x].ToLower())
@@ -123,12 +121,15 @@ namespace WindowsFormsApp4
                             }
                         }
 
+                        // calculates percentage and displays info
                         float percentage = iCount * 100 / (float)listWithDupes.Count;
-                        listBox2.Items.Add($"{inputtedWordList[i]} \t\t\t {iCount} \t {percentage}% \n");
+                        listBox2.Items.Add($"{inputtedWordList[i]} \t\t {iCount} \t {Math.Round(percentage, 2)}% \n");
                         listBox2.Sorted = true;
 
                     }
                     else
+
+                        // this is where any words that arnt in the word list file are displayed
                         listBox3.Items.Add(inputtedWordList[i]);
                 }
             }
@@ -187,6 +188,7 @@ namespace WindowsFormsApp4
             richTextBox4.AppendText("Length count: ");
 
             listBox2.Items.Clear();
+            listBox3.Items.Clear();
         }
 
         private void richTextBox5_TextChanged(object sender, EventArgs e)
