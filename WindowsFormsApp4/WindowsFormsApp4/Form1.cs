@@ -19,6 +19,7 @@ namespace WindowsFormsApp4
         public Form1()
         {
             InitializeComponent();
+
         }
 
         static class Globals
@@ -58,6 +59,8 @@ namespace WindowsFormsApp4
 
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             // Checks if text is entered
@@ -69,11 +72,16 @@ namespace WindowsFormsApp4
                 richTextBox2.Clear();
                 richTextBox2.AppendText("Word count: ");
 
+
                 richTextBox3.Clear();
                 richTextBox3.AppendText("Char count: ");
 
                 richTextBox4.Clear();
                 richTextBox4.AppendText("Length count: ");
+
+                listBox3.Items.Clear();
+                listBox3.Items.Add($"Misspelt words");
+                listBox3.Items.Add("");
 
                 listBox2.Items.Clear();
 
@@ -102,27 +110,27 @@ namespace WindowsFormsApp4
                 for (int i = 0; i < inputtedWordList.Count; i+= 1)
                 
                 {
-                    
-                    if (Globals.trimmedWordList.Contains(inputtedWordList[i]))
-                    {
-                        float iCount = 0;
 
-                        for (int x = 0; x < inputtedWordList.Count; x++)
+                    if (Globals.trimmedWordList.Contains(inputtedWordList[i].ToLower()))
+                    {
+                        int iCount = 0;
+
+                        for (int x = 0; x < listWithDupes.Count; x++)
                         {
-                            if (inputtedWordList[i] == listWithDupes[x])
+                            if (inputtedWordList[i].ToLower() == listWithDupes[x].ToLower())
                             {
-                                iCount += 1;
+                                iCount++;
                             }
                         }
-                            
-                        float percentage = iCount * 100 / inputtedWordList.Count;
-                        listBox2.Items.Add ($"{inputtedWordList[i]} \t\t\t {iCount} \t {percentage} \n");
+
+                        float percentage = iCount * 100 / (float)listWithDupes.Count;
+                        listBox2.Items.Add($"{inputtedWordList[i]} \t\t\t {iCount} \t {percentage}% \n");
                         listBox2.Sorted = true;
 
                     }
-
+                    else
+                        listBox3.Items.Add(inputtedWordList[i]);
                 }
-
             }
 
             else
@@ -131,7 +139,6 @@ namespace WindowsFormsApp4
                 MessageBox.Show("No text was entered");
                 richTextBox1.AppendText("Add text here");
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
