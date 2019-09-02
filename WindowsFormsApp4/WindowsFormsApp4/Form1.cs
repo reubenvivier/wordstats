@@ -175,6 +175,8 @@ namespace WindowsFormsApp4
 
         private void button3_Click(object sender, EventArgs e)
         {
+            // reset everything
+
             richTextBox1.Clear();
             richTextBox1.AppendText("Add text here");
 
