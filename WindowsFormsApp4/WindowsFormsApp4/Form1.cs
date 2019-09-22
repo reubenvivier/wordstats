@@ -155,7 +155,7 @@ namespace WindowsFormsApp4
             string trimmedWords = "";
             
             // Foreach loop that gets all the words in all the files and combinds them into one
-            foreach (string file in Directory.EnumerateFiles(@"C:\Users\Reuben-Laptop\Desktop\BNC_COCA_25000", "*.txt"))
+            foreach (string file in Directory.EnumerateFiles("BNC_COCA_25000", "*.txt"))
             {
                 string words = File.ReadAllText(file);
                 untrimmedWords += words.ToString().ToLower();
