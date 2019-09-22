@@ -64,6 +64,7 @@
             // 
             this.richTextBox2.Location = new System.Drawing.Point(565, 870);
             this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(209, 168);
             this.richTextBox2.TabIndex = 3;
             this.richTextBox2.Tag = "";
@@ -93,6 +94,7 @@
             // 
             this.richTextBox3.Location = new System.Drawing.Point(781, 870);
             this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.ReadOnly = true;
             this.richTextBox3.Size = new System.Drawing.Size(193, 168);
             this.richTextBox3.TabIndex = 41;
             this.richTextBox3.Tag = "";
@@ -103,6 +105,7 @@
             // 
             this.richTextBox4.Location = new System.Drawing.Point(981, 870);
             this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.ReadOnly = true;
             this.richTextBox4.Size = new System.Drawing.Size(177, 168);
             this.richTextBox4.TabIndex = 42;
             this.richTextBox4.Text = "Length Count: ";
@@ -140,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1917, 1056);
+            this.ClientSize = new System.Drawing.Size(2962, 1429);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button3);
@@ -153,7 +156,8 @@
             this.Controls.Add(this.richTextBox1);
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Word Analyser";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

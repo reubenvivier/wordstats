@@ -66,72 +66,77 @@ namespace WindowsFormsApp4
             string textInput = richTextBox1.Text.Replace(" ", string.Empty);
             if (textInput != string.Empty)
             {
-
-                // Clears ands sets text in stats boxes
-                richTextBox2.Clear();
-                richTextBox2.AppendText("Word count: ");
-
-
-                richTextBox3.Clear();
-                richTextBox3.AppendText("Char count: ");
-
-                richTextBox4.Clear();
-                richTextBox4.AppendText("Length count: ");
-
-                listBox3.Items.Clear();
-                listBox3.Items.Add("Misspelt words");
-                listBox3.Items.Add("");
-
-                listBox2.Items.Clear();
-
-                // Calculates word stats
-                int wrdCount = wordCount(richTextBox1.Text);
-                string wordcount = Convert.ToString(wrdCount);
-                richTextBox2.AppendText(wordcount);
-
-                int chrCount = charCount(richTextBox1.Text);
-                string Charcount = Convert.ToString(chrCount);
-                richTextBox3.AppendText(Charcount);
-
-                int spaceCount = charspaceCount(richTextBox1.Text);
-                string Spccount = Convert.ToString(spaceCount);
-                richTextBox4.AppendText(Spccount);
-
-                // Variable for trimmed inputted words and set to lower case
-                string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
-                List<string> inputtedWordList = new List<string>();
-                List<string> listWithDupes = new List<string>();
-                listWithDupes = inputtedWords.ToLower().Split(' ').ToList<string>();
-                inputtedWordList = listWithDupes.Distinct().ToList();
-
-                for (int i = 0; i < inputtedWordList.Count; i+= 1)
-                
+                if (Globals.trimmedWordList != null)
                 {
-                    // if the word is in the word file
-                    if (Globals.trimmedWordList.Contains(inputtedWordList[i].ToLower()))
+
+                    // Clears ands sets text in stats boxes
+                    richTextBox2.Clear();
+                    richTextBox2.AppendText("Word count: ");
+
+
+                    richTextBox3.Clear();
+                    richTextBox3.AppendText("Char count: ");
+
+                    richTextBox4.Clear();
+                    richTextBox4.AppendText("Length count: ");
+
+                    listBox3.Items.Clear();
+                    listBox3.Items.Add("Misspelt words");
+                    listBox3.Items.Add("");
+
+                    listBox2.Items.Clear();
+
+                    // Calculates word stats
+                    int wrdCount = wordCount(richTextBox1.Text);
+                    string wordcount = Convert.ToString(wrdCount);
+                    richTextBox2.AppendText(wordcount);
+
+                    int chrCount = charCount(richTextBox1.Text);
+                    string Charcount = Convert.ToString(chrCount);
+                    richTextBox3.AppendText(Charcount);
+
+                    int spaceCount = charspaceCount(richTextBox1.Text);
+                    string Spccount = Convert.ToString(spaceCount);
+                    richTextBox4.AppendText(Spccount);
+
+                    // Variable for trimmed inputted words and set to lower case
+                    string inputtedWords = Regex.Replace(richTextBox1.Text, "[^A-Za-z0-9 ]", "");
+                    List<string> inputtedWordList = new List<string>();
+                    List<string> listWithDupes = new List<string>();
+                    listWithDupes = inputtedWords.ToLower().Split(' ').ToList<string>();
+                    inputtedWordList = listWithDupes.Distinct().ToList();
+
+                    for (int i = 0; i < inputtedWordList.Count; i += 1)
+
                     {
-                        int iCount = 0;
-
-                        // counts how many times the word is used
-                        for (int x = 0; x < listWithDupes.Count; x++)
+                        // if the word is in the word file
+                        if (Globals.trimmedWordList.Contains(inputtedWordList[i].ToLower()))
                         {
-                            if (inputtedWordList[i].ToLower() == listWithDupes[x].ToLower())
+                            int iCount = 0;
+
+                            // counts how many times the word is used
+                            for (int x = 0; x < listWithDupes.Count; x++)
                             {
-                                iCount++;
+                                if (inputtedWordList[i].ToLower() == listWithDupes[x].ToLower())
+                                {
+                                    iCount++;
+                                }
                             }
+
+                            // calculates percentage and displays info
+                            float percentage = iCount * 100 / (float)listWithDupes.Count;
+                            listBox2.Items.Add($"{inputtedWordList[i]} \t\t {iCount} \t {Math.Round(percentage, 2)}% \n");
+                            listBox2.Sorted = true;
+
                         }
+                        else
 
-                        // calculates percentage and displays info
-                        float percentage = iCount * 100 / (float)listWithDupes.Count;
-                        listBox2.Items.Add($"{inputtedWordList[i]} \t\t {iCount} \t {Math.Round(percentage, 2)}% \n");
-                        listBox2.Sorted = true;
-
+                            // this is where any words that arnt in the word list file are displayed
+                            listBox3.Items.Add(inputtedWordList[i]);
                     }
-                    else
-
-                        // this is where any words that arnt in the word list file are displayed
-                        listBox3.Items.Add(inputtedWordList[i]);
                 }
+                else
+                    MessageBox.Show("Please load word files first");
             }
 
             else
